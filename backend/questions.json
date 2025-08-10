@@ -1,0 +1,407 @@
+{
+  "databaseNames": {
+    "db1.sqlite": "Beginner  Users & Orders",
+    "db2.sqlite": "Beginner Products & Categories",
+    "db3.sqlite": "Medium Employees & Projects",
+    "db4.sqlite": "Medium  Movies & Actors",
+    "db5.sqlite": "Hard Sales & Customers"
+  },
+  "db1.sqlite": [
+    {
+      "id": 1,
+      "title": "List all users",
+      "description": "Retrieve all rows from the users table.",
+      "solution": "SELECT * FROM users;",
+      "orderMatters": false,
+      "timeTaken": 9
+    },
+    {
+      "id": 2,
+      "title": "List all orders",
+      "description": "Retrieve all rows from the orders table.",
+      "solution": "SELECT * FROM orders;",
+      "orderMatters": false
+    },
+    {
+      "id": 3,
+      "title": "Count users",
+      "description": "Count total users.",
+      "solution": "SELECT COUNT(*) AS total FROM users;",
+      "orderMatters": false
+    },
+    {
+      "id": 4,
+      "title": "Orders over $100",
+      "description": "List orders where amount > 100.",
+      "solution": "SELECT * FROM orders WHERE amount > 100;",
+      "orderMatters": false
+    },
+    {
+      "id": 5,
+      "title": "User names and emails",
+      "description": "List all user names and their emails.",
+      "solution": "SELECT name, email FROM users;",
+      "orderMatters": false
+    },
+    {
+      "id": 6,
+      "title": "Join users and orders",
+      "description": "List all users with their orders.",
+      "solution": "SELECT u.name, o.product, o.amount FROM users u JOIN orders o ON u.id = o.user_id;",
+      "orderMatters": false
+    },
+    {
+      "id": 7,
+      "title": "Total order amount per user",
+      "description": "Show each user's total order amount.",
+      "solution": "SELECT u.name, SUM(o.amount) AS total_amount FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 8,
+      "title": "Users with no orders",
+      "description": "Find users who have not placed any orders.",
+      "solution": "SELECT name FROM users WHERE id NOT IN (SELECT user_id FROM orders);",
+      "orderMatters": false
+    },
+    {
+      "id": 9,
+      "title": "Most expensive order",
+      "description": "Find the highest order amount.",
+      "solution": "SELECT * FROM orders ORDER BY amount DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 10,
+      "title": "Average order amount",
+      "description": "Calculate the average order amount.",
+      "solution": "SELECT AVG(amount) AS avg_amount FROM orders;",
+      "orderMatters": false
+    }
+  ],
+  "db2.sqlite": [
+    {
+      "id": 1,
+      "title": "List all products",
+      "description": "Retrieve all rows from the products table.",
+      "solution": "SELECT * FROM products;",
+      "orderMatters": false
+    },
+    {
+      "id": 2,
+      "title": "List all categories",
+      "description": "Retrieve all rows from the categories table.",
+      "solution": "SELECT * FROM categories;",
+      "orderMatters": false
+    },
+    {
+      "id": 3,
+      "title": "Count products",
+      "description": "Count total products.",
+      "solution": "SELECT COUNT(*) AS total FROM products;",
+      "orderMatters": false
+    },
+    {
+      "id": 4,
+      "title": "Products over $100",
+      "description": "List products priced above 100.",
+      "solution": "SELECT * FROM products WHERE price > 100;",
+      "orderMatters": false
+    },
+    {
+      "id": 5,
+      "title": "Products with categories",
+      "description": "List products with their categories.",
+      "solution": "SELECT p.name, c.name AS category FROM products p JOIN categories c ON p.category_id = c.id;",
+      "orderMatters": false
+    },
+    {
+      "id": 6,
+      "title": "Average price",
+      "description": "Calculate the average product price.",
+      "solution": "SELECT AVG(price) AS avg_price FROM products;",
+      "orderMatters": false
+    },
+    {
+      "id": 7,
+      "title": "Most expensive product",
+      "description": "Find the highest priced product.",
+      "solution": "SELECT * FROM products ORDER BY price DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 8,
+      "title": "Electronics products",
+      "description": "List all products in Electronics.",
+      "solution": "SELECT name FROM products WHERE category_id = (SELECT id FROM categories WHERE name = 'Electronics');",
+      "orderMatters": false
+    },
+    {
+      "id": 9,
+      "title": "Total price per category",
+      "description": "Show total product price per category.",
+      "solution": "SELECT c.name, SUM(p.price) AS total_price FROM products p JOIN categories c ON p.category_id = c.id GROUP BY c.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 10,
+      "title": "Cheapest product",
+      "description": "Find the cheapest product.",
+      "solution": "SELECT * FROM products ORDER BY price ASC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 11,
+      "title": "Category with most products",
+      "description": "Find the category that has the most products.",
+      "solution": "SELECT c.name, COUNT(*) AS product_count FROM products p JOIN categories c ON p.category_id = c.id GROUP BY c.name ORDER BY product_count DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 12,
+      "title": "Top 3 most expensive products",
+      "description": "List the top three most expensive products.",
+      "solution": "SELECT * FROM products ORDER BY price DESC LIMIT 3;",
+      "orderMatters": true
+    },
+    {
+      "id": 13,
+      "title": "Products priced between $50 and $200",
+      "description": "List all products with prices between 50 and 200 inclusive.",
+      "solution": "SELECT * FROM products WHERE price BETWEEN 50 AND 200;",
+      "orderMatters": false
+    },
+    {
+      "id": 14,
+      "title": "Average price per category",
+      "description": "Show the average price of products in each category.",
+      "solution": "SELECT c.name, AVG(p.price) AS avg_price FROM products p JOIN categories c ON p.category_id = c.id GROUP BY c.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 15,
+      "title": "Products with names containing 'Book'",
+      "description": "List all products whose names contain the word 'Book'.",
+      "solution": "SELECT * FROM products WHERE name LIKE '%Book%';",
+      "orderMatters": false
+    }
+  ],
+  "db3.sqlite": [
+    {
+      "id": 1,
+      "title": "List all employees",
+      "description": "Retrieve all rows from the employees table.",
+      "solution": "SELECT * FROM employees;",
+      "orderMatters": false
+    },
+    {
+      "id": 2,
+      "title": "List all departments",
+      "description": "Retrieve all rows from the departments table.",
+      "solution": "SELECT * FROM departments;",
+      "orderMatters": false
+    },
+    {
+      "id": 3,
+      "title": "Employees in Engineering",
+      "description": "List all employees in the Engineering department.",
+      "solution": "SELECT name FROM employees WHERE department_id = (SELECT id FROM departments WHERE name = 'Engineering');",
+      "orderMatters": false
+    },
+    {
+      "id": 4,
+      "title": "Average salary per department",
+      "description": "Show each department's average salary.",
+      "solution": "SELECT d.name, AVG(e.salary) AS avg_salary FROM employees e JOIN departments d ON e.department_id = d.id GROUP BY d.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 5,
+      "title": "Projects with budget over 100000",
+      "description": "List all projects where budget > 100000.",
+      "solution": "SELECT * FROM projects WHERE budget > 100000;",
+      "orderMatters": false
+    },
+    {
+      "id": 6,
+      "title": "Employees hired after 2020",
+      "description": "List employees who joined after 2020-01-01.",
+      "solution": "SELECT * FROM employees WHERE hire_date > '2020-01-01';",
+      "orderMatters": false
+    },
+    {
+      "id": 7,
+      "title": "Department with highest average salary",
+      "description": "Find the department with the highest average salary.",
+      "solution": "SELECT d.name FROM employees e JOIN departments d ON e.department_id = d.id GROUP BY d.name ORDER BY AVG(e.salary) DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 8,
+      "title": "Employees without projects",
+      "description": "Find employees whose department has no projects.",
+      "solution": "SELECT e.name FROM employees e WHERE e.department_id NOT IN (SELECT department_id FROM projects);",
+      "orderMatters": false
+    },
+    {
+      "id": 9,
+      "title": "Total budget per department",
+      "description": "Show total budget for each department.",
+      "solution": "SELECT d.name, SUM(p.budget) AS total_budget FROM projects p JOIN departments d ON p.department_id = d.id GROUP BY d.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 10,
+      "title": "Highest paid employee",
+      "description": "Find the employee with the highest salary.",
+      "solution": "SELECT * FROM employees ORDER BY salary DESC LIMIT 1;",
+      "orderMatters": true
+    }
+  ],
+  "db4.sqlite": [
+    {
+      "id": 1,
+      "title": "List all movies",
+      "description": "Retrieve all rows from the movies table.",
+      "solution": "SELECT * FROM movies;",
+      "orderMatters": false,
+      "timeTaken": 5
+    },
+    {
+      "id": 2,
+      "title": "List all actors",
+      "description": "Retrieve all rows from the actors table.",
+      "solution": "SELECT * FROM actors;",
+      "orderMatters": false,
+      "timeTaken": 16
+    },
+    {
+      "id": 3,
+      "title": "Movies directed by Christopher Nolan",
+      "description": "List all movies directed by Christopher Nolan.",
+      "solution": "SELECT title FROM movies WHERE director_id = (SELECT id FROM directors WHERE name = 'Christopher Nolan');",
+      "orderMatters": false
+    },
+    {
+      "id": 4,
+      "title": "Actors born after 1980",
+      "description": "List all actors born after 1980.",
+      "solution": "SELECT * FROM actors WHERE birth_year > 1980;",
+      "orderMatters": false
+    },
+    {
+      "id": 5,
+      "title": "Movies and their directors",
+      "description": "List all movies along with their director names.",
+      "solution": "SELECT m.title, d.name AS director FROM movies m JOIN directors d ON m.director_id = d.id;",
+      "orderMatters": false
+    },
+    {
+      "id": 6,
+      "title": "Actors and their movies",
+      "description": "List all actors with the movies they acted in.",
+      "solution": "SELECT a.name, m.title FROM actors a JOIN roles r ON a.id = r.actor_id JOIN movies m ON r.movie_id = m.id;",
+      "orderMatters": false
+    },
+    {
+      "id": 7,
+      "title": "Number of movies per director",
+      "description": "Show each director's total movie count.",
+      "solution": "SELECT d.name, COUNT(m.id) AS movie_count FROM directors d LEFT JOIN movies m ON d.id = m.director_id GROUP BY d.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 8,
+      "title": "Movie count per actor",
+      "description": "Show how many movies each actor has acted in.",
+      "solution": "SELECT a.name, COUNT(r.movie_id) AS movie_count FROM actors a LEFT JOIN roles r ON a.id = r.actor_id GROUP BY a.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 9,
+      "title": "Oldest movie",
+      "description": "Find the movie with the earliest release year.",
+      "solution": "SELECT * FROM movies ORDER BY release_year ASC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 10,
+      "title": "Actors in movies released after 2010",
+      "description": "List all actors who acted in movies released after 2010.",
+      "solution": "SELECT DISTINCT a.name FROM actors a JOIN roles r ON a.id = r.actor_id JOIN movies m ON r.movie_id = m.id WHERE m.release_year > 2010;",
+      "orderMatters": false
+    }
+  ],
+  "db5.sqlite": [
+    {
+      "id": 1,
+      "title": "List all customers",
+      "description": "Retrieve all rows from the customers table.",
+      "solution": "SELECT * FROM customers;",
+      "orderMatters": false
+    },
+    {
+      "id": 2,
+      "title": "List all products",
+      "description": "Retrieve all rows from the products table.",
+      "solution": "SELECT * FROM products;",
+      "orderMatters": false
+    },
+    {
+      "id": 3,
+      "title": "Total sales per product",
+      "description": "Show the total quantity sold for each product.",
+      "solution": "SELECT p.name, SUM(s.quantity) AS total_sold FROM sales s JOIN products p ON s.product_id = p.id GROUP BY p.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 4,
+      "title": "Highest revenue product",
+      "description": "Find the product that generated the most revenue.",
+      "solution": "SELECT p.name, SUM(s.quantity * p.price) AS revenue FROM sales s JOIN products p ON s.product_id = p.id GROUP BY p.name ORDER BY revenue DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 5,
+      "title": "Customers from North region",
+      "description": "List all customers from the North region.",
+      "solution": "SELECT c.name FROM customers c JOIN regions r ON c.region_id = r.id WHERE r.name = 'North';",
+      "orderMatters": false
+    },
+    {
+      "id": 6,
+      "title": "Monthly sales totals",
+      "description": "Show total quantity sold per month.",
+      "solution": "SELECT substr(sale_date,1,7) AS month, SUM(quantity) AS total_quantity FROM sales GROUP BY month;",
+      "orderMatters": false
+    },
+    {
+      "id": 7,
+      "title": "Top customer by revenue",
+      "description": "Find the customer who spent the most money.",
+      "solution": "SELECT c.name, SUM(s.quantity * p.price) AS total_spent FROM sales s JOIN customers c ON s.customer_id = c.id JOIN products p ON s.product_id = p.id GROUP BY c.name ORDER BY total_spent DESC LIMIT 1;",
+      "orderMatters": true
+    },
+    {
+      "id": 8,
+      "title": "Product sales by region",
+      "description": "Show total quantity of each product sold in each region.",
+      "solution": "SELECT r.name AS region, p.name AS product, SUM(s.quantity) AS total_sold FROM sales s JOIN customers c ON s.customer_id = c.id JOIN regions r ON c.region_id = r.id JOIN products p ON s.product_id = p.id GROUP BY r.name, p.name;",
+      "orderMatters": false
+    },
+    {
+      "id": 9,
+      "title": "Customers who bought more than one product type",
+      "description": "Find customers who purchased more than one distinct product.",
+      "solution": "SELECT c.name FROM sales s JOIN customers c ON s.customer_id = c.id GROUP BY c.name HAVING COUNT(DISTINCT s.product_id) > 1;",
+      "orderMatters": false
+    },
+    {
+      "id": 10,
+      "title": "Most recent sale",
+      "description": "Find the most recent sale record.",
+      "solution": "SELECT * FROM sales ORDER BY sale_date DESC LIMIT 1;",
+      "orderMatters": true
+    }
+  ]
+}
